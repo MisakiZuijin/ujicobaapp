@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'stack_screen.dart';
+import 'package:ujicobaapp/Profile_Screen.dart';
+import 'Profile_Screen.dart';
 
 class ListScreen extends StatelessWidget {
   ListScreen({super.key});
@@ -40,10 +41,7 @@ class ListScreen extends StatelessWidget {
               ),
               child: IconButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => StackScreen()),
-                  );
+                  Navigator.of(context).pop();
                 },
                 icon: Icon(Icons.person, color: Colors.white),
               ),
@@ -73,7 +71,6 @@ class ListScreen extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  // Icon dalam lingkaran
                   Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(

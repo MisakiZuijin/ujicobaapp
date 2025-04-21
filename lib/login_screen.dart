@@ -1,60 +1,96 @@
 import 'package:flutter/material.dart';
-import 'list_screen.dart';
+import 'package:ujicobaapp/Profile_Screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                'Login',
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+              const Icon(Icons.account_circle, size: 100, color: Colors.red),
+              const SizedBox(height: 20),
+              const Text(
+                'Selamat Datang!',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 25),
+              const SizedBox(height: 10),
+              const Text(
+                'Silahkan Login',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+              const SizedBox(height: 30),
 
+              // Email Field
               TextField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Username',
+                  labelText: 'Email',
+                  prefixIcon: const Icon(Icons.email),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  icon: Icon(Icons.person),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 20),
 
+              // Password Field
               TextField(
+                controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
+                  prefixIcon: const Icon(Icons.lock),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  icon: Icon(Icons.lock),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 30),
 
-              SizedBox(
-                width: 250,
-                height: 55,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ListScreen()),
-                    );
-                  },
-                  child: Text(
-                    'Login',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              // Login Button
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) =>
+                              MyProfileScreen(nama: emailController.text),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
+                ),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
             ],
